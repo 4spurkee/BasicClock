@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+       body{
+        background: rgb(255, 255, 255);
+        font-family: 'Trebuchet MS';
+        margin: 0%;;
+       }
+        #clock {
+            font-family:'Trebuchet MS';
+            font-size: 10em;
+            text-align: center;
+            text-justify: center;
+            margin-top: 10%;
+            font-weight: bolder;
+            color:rgb(0, 0, 0);
+           
+        }
+        #date {
+            font-family:'Trebuchet MS';
+            font-size: 5em;
+            text-align: center;
+            text-justify: center;
+            margin-top: 0%;
+            font-weight: bolder;
+            color:rgb(0, 0, 0);
+            margin-top: 20px;
+           
+        }
+        #zone {
+            font-family:'Trebuchet MS';
+            font-size: 2em;
+            text-align: center;
+            text-justify: center;
+            margin-top: 0%;
+            font-weight: bolder;
+            color:rgb(0, 0, 0);
+           
+        }
+
+        .footer {
+            font-family: 'Trebuchet MS';
+            font-size: 1.5em;
+            text-align: center;
+            font-weight: bold;
+            color:rgb(0, 0, 0);
+            margin-top: 20px;
+            padding: 10px;
+   
+}
+
+        a{
+            color:black;
+            transition: 500ms;
+        }
+        a:hover{
+    color: rgb(100, 100, 100);
+    transition: 500ms;
+}
+
+
+    </style>  
+</head>
+<body>
+    <div id="clock">Loading..</div>
+    <div id="date">Loading..</div>
+    <div id="zone">Loading..</div>
+    
+    <script>
+        fetch('http://ip-api.com/json')
+        .then(d => d.json())
+        .then(d => {
+            document.getElementById('zone').innerHTML = d.city+', '+d.country+'. '+d.timezone;
+        })
+        function update(){
+         // document.getElementById('clock').innerHTML = String(new Date)
+         let now = new Date;
+         let h = now.getHours();
+         let m = now.getMinutes();
+         let s = now.getSeconds();
+         let w = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][now.getDay()];
+         let d = now.getDate();
+         let mo = ['January','February','March','April','May','June ','July','August','September','October','November','December'][now.getMonth()];
+         let y = now.getFullYear();
+         
+
+         document.getElementById('clock').innerHTML = String(h+':'+m+':'+s)
+         document.getElementById('date').innerHTML = String(w+','+mo+' '+d+'th ' +y)
+        //  document.getElementById('zone').innerHTML = String()
+        }
+        setInterval(update,1000);
+    </script>
+    <footer class="footer">
+        <p>&copy; 2025 4spurkee_. All rights reserved. <br><br>
+        <a href="https://github.com/4spurkee">My Github.</a></p> 
+    </footer>
+</body>
+</html>
